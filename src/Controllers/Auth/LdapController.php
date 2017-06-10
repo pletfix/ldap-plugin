@@ -4,8 +4,8 @@ namespace Pletfix\Ldap\Controllers\Auth;
 
 use App\Controllers\Controller;
 use App\Models\User;
-use Core\Services\DI;
 use Core\Services\Contracts\Response;
+use Core\Services\DI;
 
 /**
  * This controller handles authentication users through the Active Directory and redirecting them to your home screen.
@@ -39,9 +39,8 @@ class LdapController extends Controller
         $input = request()->input();
 
         // Authenticate the user through the Active Directory.
-        // /** @var \Pletfix\Ldap\Services\Ldap $ldap */
-        //$ldap = DI::getInstance()->get('ldap');
-        $ldap = ldap();
+         /** @var \Pletfix\Ldap\Services\Ldap $ldap */
+        $ldap = DI::getInstance()->get('ldap');
         if (!$ldap->authenticate($input['username'], $input['password'])) {
             unset($input['password']);
             return redirect('auth/ldap', [], [
@@ -58,28 +57,36 @@ class LdapController extends Controller
             'role'        => null,
         ], $ldap->getUser($input['username']));
 
-        // Load the User entity from the database or create a new Model if not exist.
-        $user = User::whereIs('principal', $attributes['userprincipalname'])->first();
-        if ($user === null && !empty($attributes['mail'])) {
-            $user = User::whereIs('email', $attributes['mail'])->first();
-//            if ($user !== null) {
-//                $user->principal = $attributes['userprincipalname'];
-//                $user->save();
-//            }
+        $model = config('ldap.model.class');
+        if ($model !== null) {
+            $mapping = array_merge(['userprincipalname' => 'principal'], config('ldap.model.mapping', []));
+            $keyField = $mapping['userprincipalname'];
+
+            // Load the User entity from the database or create a new Model if not exist.
+            $user = call_user_func([$model, 'whereIs'], $keyField, $attributes['userprincipalname'])->first();
+            //$user = User::whereIs('principal', $attributes['userprincipalname'])->first();
+            if ($user === null && isset($mapping['mail']) && !empty($attributes['mail'])) {
+                $user = call_user_func([$model, 'whereIs'], $mapping['mail'], $attributes['mail'])->first();
+                //$user = User::whereIs('email', $attributes['mail'])->first();
+            }
+            if ($user === null) {
+                $user = new User;
+                foreach ($mapping as $adAttr => $modelAttr) {
+                    $user->setAttribute($modelAttr, $attributes[$adAttr]);
+                }
+                $user->save();
+            }
+
+            // Log the user into the application.
+            auth()->setPrincipal($user->id, $user->name, $user->role);
         }
-        if ($user === null) {
-            $user = new User;
-            $user->principal = $attributes['userprincipalname'];
-            $user->name      = $attributes['displayname'];
-            $user->email     = $attributes['mail'];
-            $user->role      = $attributes['role'];
-            $user->save();
+        else {
+            auth()->setPrincipal(uniqid(), $attributes['displayname'], $attributes['role']);
         }
 
-        // Log the user into the application.
-        auth()->setPrincipal($user->id, $user->name, $user->role); // todo kann auth() nicht auch vom Model entkoppelt werden?
+        $url = session('origin_url', url($this->redirectTo));
 
-        return redirect($this->redirectTo);
+        return response()->redirect($url);
     }
 
     /**

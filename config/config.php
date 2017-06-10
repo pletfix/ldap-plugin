@@ -31,8 +31,7 @@ return [
      *
      * This attributes will be received from the AD.
      *
-     * Note that "userprincipalname" is always received, even if it is
-     * commented out here.
+     * The "userprincipalname" attribute is always received, even if it is commented out here.
      */
 
     'attributes' => [
@@ -98,11 +97,9 @@ return [
      * Active Directory Member Mapping
      * ----------------------------------------------------------------
      *
-     * Here you may map the Common Name (CN) of the "memberof" attribute
-     * to the applications user role.
+     * Here you may map the Common Name (CN) of the "memberof" attribute to the applications user role.
      *
-     * The role is added to the attributes automatically if the "memberof"
-     * attribute is listed above.
+     * The role is added to the attributes automatically if the "memberof" attribute is listed above.
      *
      * Note, that the first matching will be used.
      *
@@ -117,5 +114,30 @@ return [
 
         ],
         'default' => 'user',
+    ],
+
+    /*
+     * ----------------------------------------------------------------
+     * Database Model
+     * ----------------------------------------------------------------
+     *
+     * Define a model here, if you want to store the attributes of the current user in your database.
+     * Typical it is the same model as you has it defined in config/auth.php.
+     *
+     * Make sure that the columns are added to this table that you have specify in the attribute list above.
+     * Note that the "userprincipalname" attribute is required for matching.
+     *
+     * If no model class is defined, the user attributes are not stored in the database.
+     */
+
+    'model' => [
+        'class'   => 'App\Models\User',
+        'mapping' => [
+            //AD Attribue       => Model Attribute
+            'userprincipalname' => 'principal',
+            'displayname'	    => 'name',
+            'mail'				=> 'email',
+            'role'              => 'role',
+        ],
     ],
 ];
