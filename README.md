@@ -23,8 +23,8 @@ Add the following environment variables in your `.env` file:
     LDAP_DOMAIN_CONTROLLER_2=YourSecondDC
     LDAP_BASE_DN=YouBaseDN
 
-At the next, open the configuration file `./config/lap` under the application's directory and override the defaults if 
-you wish.
+At the next, open the configuration file `./config/ldap.php` under the application's directory and override the 
+defaults if you wish.
    
 ## Customize
     
