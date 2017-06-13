@@ -75,13 +75,13 @@ You can also use the `ldap()` function to get the LDAP service, it is more comfo
 
 #### Available Methods
 
-#### `search`
+#### `search()`
 
 Search LDAP tree and get all result entries.
 
     $users = $ldap->search('userprincipalname=Fr*');
 
-#### `getUsers`
+#### `getUsers()`
 
 Get the user entries.
 
@@ -91,7 +91,7 @@ You may also set a filter for the `userprincipalname` attribute:
     
     $users = $ldap->getUsers('Fr*');
 
-#### `getUser`
+#### `getUser()`
 
 Get the user attributes by given username (userPrincipalName or samAccountName).
 
@@ -99,19 +99,19 @@ Get the user attributes by given username (userPrincipalName or samAccountName).
     
 You may define the attributes of the user in the configuration file `config/ldap`.            
 
-#### `authenticate`
+#### `authenticate()`
 
 Authenticate the user through the Active Directory.
 
     $isAuthenticated = $ldap->authenticate($username, $password);
 
-#### `getErrorCode`
+#### `getErrorCode()`
 
 Return the LDAP error code of the last LDAP command.
 
     $errorCode = $ldap->getErrorCode();
 
-#### `getErrorMessage`
+#### `getErrorMessage()`
 
 Return the LDAP error message of the last LDAP command.
 
