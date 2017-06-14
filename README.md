@@ -33,7 +33,7 @@ the views as you wish:
      
     cp -R ./vendor/pletfix/ldap/views/* ./resources/views/
     
-If you like to use an another root path, have a look in the plugin's route entries in `./vendor/pletfix/ldap/config/routes.php`. 
+If you like to use an another route path, have a look in the plugin's route entries in `./vendor/pletfix/ldap/config/routes.php`. 
 You can override  or modify the route entries in the application's route file `./config/boot/routes.php` like you wish:
 
     $route->get('auth/ldap',  'Auth\LdapController@showForm');
