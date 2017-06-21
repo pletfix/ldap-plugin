@@ -60,6 +60,12 @@ If you have defined a user model in the configuration, the user attributes are s
 By default, the user model from the [Pletfix Application Skeleton](https://github.com/pletfix/app) is used and no 
 further migration is required.
 
+#### Logout
+
+You may invoke just the following command to logout the user: 
+ 
+    auth()->logout();
+ 
 ### LDAP Service
 
 #### Accessing the LDAP service
