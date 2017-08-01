@@ -63,11 +63,11 @@ class LdapController extends Controller
             $keyField = $mapping['userprincipalname'];
 
             // Load the User entity from the database or create a new Model if not exist.
-            $user = call_user_func([$model, 'whereIs'], $keyField, $attributes['userprincipalname'])->first();
-            //$user = User::whereIs('principal', $attributes['userprincipalname'])->first();
+            $user = call_user_func([$model, 'where'], $keyField, $attributes['userprincipalname'])->first();
+            //$user = User::where('principal', $attributes['userprincipalname'])->first();
             if ($user === null && isset($mapping['mail']) && !empty($attributes['mail'])) {
-                $user = call_user_func([$model, 'whereIs'], $mapping['mail'], $attributes['mail'])->first();
-                //$user = User::whereIs('email', $attributes['mail'])->first();
+                $user = call_user_func([$model, 'where'], $mapping['mail'], $attributes['mail'])->first();
+                //$user = User::where('email', $attributes['mail'])->first();
             }
             if ($user === null) {
                 $user = new User;

@@ -13,7 +13,7 @@
     },
     "autoload": {
         "files": [
-            "functions/services.php"
+            "helpers.php"
         ],
         "psr-4": {
             "Pletfix\\Ldap\\": "src/"
