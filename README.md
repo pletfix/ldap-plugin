@@ -36,8 +36,8 @@ the views as you wish:
 If you like to use an another route path, have a look in the plugin's route entries in `./vendor/pletfix/ldap/config/routes.php`. 
 You can override  or modify the route entries in the application's route file `./config/boot/routes.php` like you wish:
 
-    $route->get('auth/ldap',  'Auth\LdapController@showForm');
-    $route->post('auth/ldap', 'Auth\LdapController@login');
+    $route->get('ldap/login',  'LdapController@showForm');
+    $route->post('ldap/login', 'LdapController@login');
  
 ## Usage
 
@@ -45,7 +45,7 @@ You can override  or modify the route entries in the application's route file `.
 
 Enter the following URL into your Browser to open the login form:
 
-    https://<your-application>/auth/ldap
+    https://<your-application>/ldap/login
 
 ![Screenshot1](https://raw.githubusercontent.com/pletfix/ldap/master/screenshot1.png)
 

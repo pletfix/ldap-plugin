@@ -1,6 +1,6 @@
 <?php
 
-namespace Pletfix\Ldap\Controllers\Auth;
+namespace Pletfix\Ldap\Controllers;
 
 use App\Controllers\Controller;
 use App\Models\User;
@@ -26,7 +26,7 @@ class LdapController extends Controller
      */
     public function showForm()
     {
-        return view('auth.ldap');
+        return view('ldap.login');
     }
 
     /**
@@ -43,11 +43,9 @@ class LdapController extends Controller
         $ldap = DI::getInstance()->get('ldap');
         if (!$ldap->authenticate($input['username'], $input['password'])) {
             unset($input['password']);
-            return redirect('auth/ldap', [], [
-//                'errors' => ['Benutzername oder Kennwort ist nicht korrekt.'], // Invalid credentials
-                'errors' => [$ldap->getErrorMessage()],
-                'input'  => $input,
-            ]);
+            return redirect('ldap/login')
+                ->withInput($input)
+                ->withError($ldap->getErrorMessage());
         }
 
         // Load the User attributes from the Active Directory.

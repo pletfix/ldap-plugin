@@ -11,7 +11,7 @@
                 </div>
                 <div class="panel-body">
                     @include('_errors')
-                    <form class="form-horizontal" role="form" method="POST" action="{{url('auth/ldap')}}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{url('ldap/login')}}">
                         <input name="_token" value="{{csrf_token()}}" type="hidden"/>
                         <div class="form-group{{error('username') ? ' has-error' : ''}}">
                             <label for="username" class="col-md-4 control-label">
