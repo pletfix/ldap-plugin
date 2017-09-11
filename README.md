@@ -8,11 +8,11 @@ This plugin provides a LDAP service to authenticate the user through the Active 
 
 Fetch the package by running the following terminal command under the application's directory:
 
-    composer require pletfix/ldap
+    composer require pletfix/ldap-plugin
 
 After downloading, enter this command in your terminal to register the plugin:
 
-    php console plugin pletfix/ldap 
+    php console plugin pletfix/ldap-plugin 
 
 ## Environment and Configuration
     
@@ -31,9 +31,9 @@ defaults if you wish.
 If you would like to modified the views of the plugin, copy them to the application's view directory, where you can edit 
 the views as you wish:
      
-    cp -R ./vendor/pletfix/ldap/views/* ./resources/views/
+    cp -R ./vendor/pletfix/ldap-plugin/views/* ./resources/views/
     
-If you like to use an another route path, have a look in the plugin's route entries in `./vendor/pletfix/ldap/config/routes.php`. 
+If you like to use an another route path, have a look in the plugin's route entries in `./vendor/pletfix/ldap-plugin/config/routes.php`. 
 You can override  or modify the route entries in the application's route file `./config/boot/routes.php` like you wish:
 
     $route->get('ldap/login',  'LdapController@showForm');
@@ -47,7 +47,7 @@ Enter the following URL into your Browser to open the login form:
 
     https://<your-application>/ldap/login
 
-![Screenshot1](https://raw.githubusercontent.com/pletfix/ldap/master/screenshot1.png)
+![Screenshot1](https://raw.githubusercontent.com/pletfix/ldap-plugin/master/screenshot1.png)
 
 #### User Role
 
