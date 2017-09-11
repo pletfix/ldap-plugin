@@ -1,5 +1,5 @@
 {
-    "name": "pletfix/ldap",
+    "name": "pletfix/ldap-plugin",
     "description": "LDAP Plugin for Pletfix",
     "keywords": ["pletfix", "plugin", "ldap"],
     "authors": [
