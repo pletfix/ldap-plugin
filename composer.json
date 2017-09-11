@@ -1,6 +1,7 @@
 {
     "name": "pletfix/ldap",
     "description": "LDAP Plugin for Pletfix",
+    "keywords": ["pletfix", "plugin", "ldap"],
     "authors": [
         {
             "name": "Frank Rohlfing",
