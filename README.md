@@ -28,13 +28,14 @@ defaults if you wish.
    
 ## Customize
     
-If you would like to modified the views of the plugin, copy them to the application's view directory, where you can edit 
-the views as you wish:
-     
-    cp -R ./vendor/pletfix/ldap-plugin/views/* ./resources/views/
+If you would like to modified the views of the plugin, create a folder `ldap` under the view directory of the application, 
+and copy the views there. Here you can edit the views as you like:
     
-If you like to use an another route path, have a look in the plugin's route entries in `./vendor/pletfix/ldap-plugin/config/routes.php`. 
-You can override  or modify the route entries in the application's route file `./config/boot/routes.php` like you wish:
+    mkdir ./resources/views/ldap 
+    cp -R ./vendor/pletfix/ldap-plugin/views/* ./resources/views/ldap
+    
+If you like to use another route paths, copy the route entries from `./vendor/pletfix/ldap-plugin/config/routes.php` 
+into the application's routing file `./config/boot/routes.php`, where you can modify them as you wish:
 
     $route->get('ldap/login',  'LdapController@showForm');
     $route->post('ldap/login', 'LdapController@login');

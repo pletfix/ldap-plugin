@@ -88,7 +88,7 @@ class LdapController extends Controller
     }
 
     /**
-     * Log the user out of the application.
+     * Log off the user from the application.
      *
      * @return Response
      */
