@@ -1,6 +1,6 @@
 <?php
 
-$router = Core\Services\DI::getInstance()->get('router');
+$router = Core\Application::router();
 
 $router->get('ldap/login',   'LdapController@showForm');
 $router->post('ldap/login',  'LdapController@login');
