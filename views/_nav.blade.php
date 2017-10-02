@@ -1,5 +1,7 @@
 @if(!auth()->isLoggedIn())
-    <li><a href="{{url('ldap/login')}}"><i class="fa fa-windows" aria-hidden="true"></i> {{t('ldap.nav.login')}}</a></li>
+    <li {!! is_active('ldap/login') ? 'class="active"' : '' !!}>
+        <a href="{{url('ldap/login')}}"><i class="fa fa-windows" aria-hidden="true"></i> {{t('ldap.nav.login')}}</a>
+    </li>
 @else
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -8,7 +10,7 @@
             <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-            <li>
+            <li {!! is_active('ldap/logout') ? 'class="active"' : '' !!}>
                 <a href="{{url('ldap/logout')}}" onclick="event.preventDefault(); $(this).next().submit();">
                     <i class="fa fa-sign-out" aria-hidden="true"></i> {{t('ldap.nav.logout')}}
                 </a>
