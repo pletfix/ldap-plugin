@@ -34,8 +34,8 @@ and copy the views there. Here you can edit the views as you like:
     mkdir ./resources/views/ldap 
     cp -R ./vendor/pletfix/ldap-plugin/views/* ./resources/views/ldap
     
-If you like to use another route paths, copy the route entries from `./vendor/pletfix/ldap-plugin/config/routes.php` 
-into the application's routing file `./config/boot/routes.php`, where you can modify them as you wish:
+If you like to use another route paths, copy the route entries from `./vendor/pletfix/ldap-plugin/boot/routes.php` 
+into the application's routing file `./boot/routes.php`, where you can modify them as you wish:
 
     $route->get('ldap/login',  'LdapController@showForm');
     $route->post('ldap/login', 'LdapController@login');
