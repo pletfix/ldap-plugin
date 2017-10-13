@@ -12,7 +12,7 @@ Fetch the package by running the following terminal command under the applicatio
 
 After downloading, enter this command in your terminal to register the plugin:
 
-    php console plugin pletfix/ldap-plugin 
+    php console plugin pletfix/ldap-plugin --add-routes
 
 ## Environment and Configuration
     
@@ -28,12 +28,22 @@ defaults if you wish.
    
 ## Customize
     
-If you would like to modified the views of the plugin, create a folder `ldap` under the view directory of the application, 
-and copy the views there. Here you can edit the views as you like:
+### View
+    
+If you would like to modified the views of the plugin, create a folder `ldap` under the view directory of the 
+application, and copy the views there. Here you can edit the views as you like:
     
     mkdir ./resources/views/ldap 
     cp -R ./vendor/pletfix/ldap-plugin/views/* ./resources/views/ldap
+
+If you have installed the [Pletfix Application Skeleton](https://github.com/pletfix/app), you could add the necessary 
+menu items ("login" and "logout") by including the partial `_nav` in your `resources/views/app.blade.php` layout just 
+above the marker `{{--menu_point--}}`: 
     
+       @include('ldap._nav')
+
+### Routes
+
 If you like to use another route paths, copy the route entries from `./vendor/pletfix/ldap-plugin/boot/routes.php` 
 into the application's routing file `./boot/routes.php`, where you can modify them as you wish:
 
