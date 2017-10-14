@@ -12,7 +12,7 @@ Fetch the package by running the following terminal command under the applicatio
 
 After downloading, enter this command in your terminal to register the plugin:
 
-    php console plugin pletfix/ldap-plugin --add-routes
+    php console plugin pletfix/ldap-plugin
 
 ## Environment and Configuration
     
