@@ -2,6 +2,7 @@
     "name": "pletfix/ldap-plugin",
     "description": "LDAP Plugin for Pletfix",
     "keywords": ["pletfix", "plugin", "ldap"],
+    "license": "MIT",
     "authors": [
         {
             "name": "Frank Rohlfing",
